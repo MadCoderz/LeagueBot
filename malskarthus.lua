@@ -1194,11 +1194,11 @@ function killsteal()
 		
 		if target.health<DQ+E+ignitedamage and GetD(target)<475 then
 			if QRDY==1 then qDoubleDmg(target) end
-			if ERDY==1 and Etoggle==false then CastSpellTarget('E',target) Etoggle==true end
+			if ERDY==1 and Etoggle==false then CastSpellTarget('E',target) Etoggle=true end
 			if ignitedamage~=0 then CastSpellTarget(IGN,target) end		
 		end
 	elseif target~=nil and target.dead==1 then
-		if ERDY==1 and Etoggle==true then CastSpellTarget('E',myHero) Etoggle==false end
+		if ERDY==1 and Etoggle==true then CastSpellTarget('E',myHero) Etoggle=false end
 	end
 end
 
