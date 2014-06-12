@@ -1170,7 +1170,7 @@ function killsteal()
 		
 		if target.health<Q+E+ignitedamage and GetD(target)<475 then
 			if QRDY==1 then CastSpellXYZ('Q',GetFireahead(target,qdelay,0)) end
-			if ERDY==1 and Etoggle==false then CastSpellTarget('E',target) end
+			if ERDY==1 and Etoggle==false then CastSpellTarget('E',target) Etoggle=true end
 			if ignitedamage~=0 then CastSpellTarget(IGN,target) end
 		end
 		
