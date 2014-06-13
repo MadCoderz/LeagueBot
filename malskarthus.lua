@@ -209,7 +209,7 @@ function Run()
 	if myHero.dead==1 then
 		Etoggle=false
 	end
-	if myHero.mana < EManaCost and Etoggle=true and myHero.dead~=1 then
+	if EManaCost ~= nil and myHero.mana < EManaCost and Etoggle==true and myHero.dead~=1 then
 		Etoggle=false
 	end
 end
