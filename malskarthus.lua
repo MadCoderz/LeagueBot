@@ -123,23 +123,23 @@ local runeverycc=0
 
 	
 function Run()
-	if GetSpellLevel('E') > 0 then
-		EManaCost = 30+(GetSpellLevel('E')-1)*12
+	if myHero.SpellLevelE > 0 then
+		EManaCost = 30+(myHero.SpellLevelE-1)*12
 	end
 	qdelay=KarthConfig.qd
-        if myHero.SpellTimeQ > 1.0 and GetSpellLevel('Q') > 0 then
+        if myHero.SpellTimeQ > 1.0 and myHero.SpellLevelQ > 0 then
                 QRDY = 1
                 else QRDY = 0
         end
-        if myHero.SpellTimeW > 1.0 and GetSpellLevel('W') > 0 then
+        if myHero.SpellTimeW > 1.0 and myHero.SpellLevelW > 0 then
                 WRDY = 1
                 else WRDY = 0
         end
-        if myHero.SpellTimeE > 1.0 and GetSpellLevel('E') > 0 then
+        if myHero.SpellTimeE > 1.0 and myHero.SpellLevelE > 0 then
                 ERDY = 1
                 else ERDY = 0
         end
-        if myHero.SpellTimeR > 1.0 and GetSpellLevel('R') > 0 then
+        if myHero.SpellTimeR > 1.0 and myHero.SpellLevelR > 0 then
                 RRDY = 1
         else RRDY = 0 end
         --------------------------
@@ -464,7 +464,7 @@ end
 ------------END OF CALLBACKS--------------------------------
 
 function autofarm()
-	local Q = (20 + (20 * GetSpellLevel('Q')) + (myHero.ap * 0.3))+lastHitSpot.single*(20 + (20 * GetSpellLevel('Q')) + (myHero.ap * 0.3))
+	local Q = (20 + (20 * myHero.SpellLevelQ) + (myHero.ap * 0.3))+lastHitSpot.single*(20 + (20 * myHero.SpellLevelQ) + (myHero.ap * 0.3))
 if KarthConfig.dfarm then
 	if target~= nil and GetD(target)<700 then
 		local tfax,tfay,tfaz = GetFireahead(target,qdelay,0)
@@ -768,9 +768,9 @@ function Teamfight()
 					if enemy~=nil and enemy.dead~=1 then
 						if QdCompare==nil and GetD(enemy)<1000 then
 							target=enemy
-							QdCompare=(target.health)/(CalcMagicDamage(target,2*(20 + (20 * GetSpellLevel('Q')) + (myHero.ap * 0.3))))
+							QdCompare=(target.health)/(CalcMagicDamage(target,2*(20 + (20 * myHero.SpellLevelQ) + (myHero.ap * 0.3))))
 						elseif GetD(enemy)<1000 then
-							Qd=(enemy.health)/(CalcMagicDamage(enemy,2*(20 + (20 * GetSpellLevel('Q')) + (myHero.ap * 0.3))))
+							Qd=(enemy.health)/(CalcMagicDamage(enemy,2*(20 + (20 * myHero.SpellLevelQ) + (myHero.ap * 0.3))))
 							if QdCompare>Qd then
 								QdCompare=nil
 								target=enemy
