@@ -123,6 +123,9 @@ local runeverycc=0
 
 	
 function Run()
+	if GetSpellLevel('E') > 0 then
+		EManaCost = 30+(GetSpellLevel('E')-1)*12
+	end
 	qdelay=KarthConfig.qd
         if myHero.SpellTimeQ > 1.0 and GetSpellLevel('Q') > 0 then
                 QRDY = 1
@@ -204,6 +207,9 @@ function Run()
 				run_every(1,findTurret)
 	end
 	if myHero.dead==1 then
+		Etoggle=false
+	end
+	if myHero.mana < EManaCost and Etoggle=true and myHero.dead~=1 then
 		Etoggle=false
 	end
 end
