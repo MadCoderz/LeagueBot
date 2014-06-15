@@ -1,4 +1,9 @@
 --[[Mad's Activator]]--
+-- Credits:
+-- lopht for Leaguebot
+-- Sida for utils.lua
+-- Akira for Activator idea and base (mostly rewritten)
+-- Lua for IgniteTarget.lua
 
 require 'Utils'
 local send = require 'SendInputScheduled'
