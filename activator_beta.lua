@@ -9,8 +9,9 @@ local version = '1.0'
 local target
 
 ADItems, ad = uiconfig.add_menu('AD Aggressive Items')
-ad.keytoggle('Tiamat', 'Tiamat', true)
+ad.keytoggle('botRK', 'Blade of the Ruined King', true)
 ad.keytoggle('Hydra', 'Hydra', true)
+ad.keytoggle('Tiamat', 'Tiamat', true)
 
 APItems, ap = uiconfig.add_menu('AP Aggressive Items')
 ap.keytoggle('DFG', 'Deathfire Grasp', true)
@@ -43,11 +44,20 @@ if Pots.HP then HPPot() end
 if Pots.MANA then MPPot() end
 end
 
+function botRK()
+if myHero.dead == 0 then
+ brk = getInventorySlot(3153)
+ if brk ~= nil and myHero["SpellTime"..brk] >= 1 then
+ brkenemy = GetWeakEnemy('PHYS', 450)
+ if ad.botRK and brkenemy ~= nil and (myHero.maxHealth-myHero.health) <= (brkenemy.maxHealth*15/100) then CastSpellTarget(tostring(brk),brkenemy) end
+ end
+end
+
 function Tiamat()
 if myHero.dead == 0 then
  tia = GetInventorySlot(3077)
  if tia ~= nil and myHero["SpellTime"..tia] >= 1 then
- if ad.Tiamat and GetWeakEnemy('PHYS', 365) ~= nil then CastSpellTarget(tostring(tia),myHero) end
+ if ad.Tiamat and GetWeakEnemy('PHYS', 400) ~= nil then CastSpellTarget(tostring(tia),myHero) end
    end
 end
 end
@@ -56,7 +66,17 @@ function Hydra()
 if myHero.dead == 0 then
  hyd = GetInventorySlot(3074)
  if hyd ~= nil and myHero["SpellTime"..tia] >= 1 then
- if ad.Tiamat and GetWeakEnemy('PHYS', 365) ~= nil then CastSpellTarget(tostring(hyd),myHero) end
+ if ad.Hydra and GetWeakEnemy('PHYS', 400) ~= nil then CastSpellTarget(tostring(hyd),myHero) end
+   end
+end
+end
+
+function DFG()
+if myHero.dead == 0 then
+ dfg = GetInventorySlot(3074)
+ if dfg ~= nil and myHero["SpellTime"..dfg] >= 1 then
+ dfgenemy = GetWeakEnemy('PHYS', 750)
+ if ap.DFG and dfgenemy ~= nil then CastSpellTarget(tostring(dfg),dfgenemy) end
    end
 end
 end
