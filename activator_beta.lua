@@ -122,7 +122,7 @@ end
 function ign()
 	igntarget = GetWeakEnemy('TRUE',600)
 	if igntarget ~= nil then
-		IgniteTarget(igntarget, Ignite.Key, ignopt.BurnGA, ignopt.BurnEgg, ignopt.BurnAatrox, ignopt.BurnZac)
+		IgniteTarget(igntarget, Summoners.Ignite.Key, ignopt.BurnGA, ignopt.BurnEgg, ignopt.BurnAatrox, ignopt.BurnZac)
 	end
 end
 
