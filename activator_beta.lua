@@ -33,42 +33,36 @@ ad.checkbutton('Tiamat', 'Tiamat', true)
 APItems, ap = uiconfig.add_menu('AP Aggressive Items')
 ap.checkbutton('DFG', 'Deathfire Grasp', true)
 
-local SummonerSpells =
-	{
-		Ignite = {Key = nil, Name = "SummonerDot"},
-		Exhaust = {Key = nil, Name = "SummonerExhaust"},
-		Heal = {Key = nil, Name = "SummonerHeal"},
-		Clarity = {Key = nil, Name = "SummonerMana"},
-		Barrier = {Key = nil, Name = "SummonerBarrier"},
-		Clairvoyance = {Key = nil, Name = "SummonerClairvoyance"},
-		Cleanse = {Key = nil, Name = "SummonerBoost"}
-	}
+local Summoners =
+                {
+                    Ignite = {Key = nil, Name = 'SummonerDot'},
+                    Exhaust = {Key = nil, Name = 'SummonerExhaust'},
+                    Heal = {Key = nil, Name = 'SummonerHeal'},
+                    Clarity = {Key = nil, Name = 'SummonerMana'},
+                    Barrier = {Key = nil, Name = 'SummonerBarrier'},
+                    Clairvoyance = {Key = nil, Name = 'SummonerClairvoyance'}
+                }
 
 Spellss, sspells = uiconfig.add_menu('Summoner Spells')
-if myHero.SummonerD == SummonerSpells.Ignite.Name or myHero.SummonerF == SummonerSpells.Ignite.Name then
+if myHero.SummonerD == Summoners.Ignite.Name or myHero.SummonerF == Summoners.Ignite.Name then
 	sspells.checkbutton('ign', 'Auto Ignite', true)
 	IgniteOptions, ignopt = uiconfig.add_menu('Ignite Options')
 	ignopt.checkbutton('BurnGA', 'Ignite Guardian Angel', true)
 	ignopt.checkbutton('BurnEgg', 'Ignite Anivia even Eggnivia passive', false)
 	ignopt.checkbutton('BurnAatrox', 'Ignite Aatrox even Rebirth passive', false)
 	ignopt.checkbutton('BurnZac', 'Ignite Zac even Rebirth passive', false)
-	if myHero.SummonerD == SummonerSpells.Ignite.Name then ignKey = 'D'
-	else ignKey = 'F'
-	end
-elseif (myHero.SummonerD or myHero.SummonerF) == SummonerSpells.Exhaust.Name then
+elseif myHero.SummonerD == Summoners.Exhaust.Name or myHero.SummonerF == Summoners.Exhaust.Name then
 	sspells.checkbutton('exh', 'Auto Exhaust', true)
-elseif (myHero.SummonerD or myHero.SummonerF) == SummonerSpells.Heal.Name then
+elseif myHero.SummonerD == Summoners.Heal.Name or myHero.SummonerF == Summoners.Heal.Name then
 	sspells.checkbutton('heal', 'Auto Heal', true)
-elseif (myHero.SummonerD or myHero.SummonerF) == SummonerSpells.Clarity.Name then
+elseif myHero.SummonerD == Summoners.Clarity.Name or myHero.SummonerF == Summoners.Clarity.Name then
 	sspells.checkbutton('cla', 'Auto Clarity', true)
-elseif (myHero.SummonerD or myHero.SummonerF) == SummonerSpells.Barrier.Name then
+elseif myHero.SummonerD == Summoners.Barrier.Name or myHero.SummonerF == Summoners.Barrier.Name then
 	sspells.checkbutton('brr', 'Auto Barrier', true)
-elseif (myHero.SummonerD or myHero.SummonerF) == SummonerSpells.Clairvoyance.Name then
+elseif myHero.SummonerD == Summoners.Clairvoyance.Name or myHero.SummonerF == Summoners.Clairvoyance.Name then
 	sspells.checkbutton('clv', 'Auto Clairvoyance', true)
-	elseif (myHero.SummonerD or myHero.SummonerF) == SummonerSpells.Cleanse.Name then
+elseif myHero.SummonerD == Summoners.Cleanse.Name or myHero.SummonerF == Summoners.Cleanse.Name then
 	sspells.checkbutton('cls', 'Auto Cleanse', true)
-else
-	print('Script is broken or outdated.')
 end
 Potions, pots = uiconfig.add_menu('Potions', 200)
 pots.checkbutton('AutoPotions', 'Master Switch: Potions', true)
@@ -128,7 +122,7 @@ end
 function ign()
 	igntarget = GetWeakEnemy('TRUE',600)
 	if igntarget ~= nil then
-		IgniteTarget(igntarget, ignKey, ignopt.BurnGA, ignopt.BurnEgg, ignopt.BurnAatrox, ignopt.BurnZac)
+		IgniteTarget(igntarget, Ignite.Key, ignopt.BurnGA, ignopt.BurnEgg, ignopt.BurnAatrox, ignopt.BurnZac)
 	end
 end
 
