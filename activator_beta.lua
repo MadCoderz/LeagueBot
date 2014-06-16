@@ -4,7 +4,7 @@
 -- Sida for utils.lua
 -- Akira for Activator idea and base (mostly rewritten)
 -- Lua for IgniteTarget.lua
--- unknown developer for RedElixir.lua (Potions)
+-- kyuuketsuuki for RedElixir.lua (Also thanks to Valdorian for RedElixir 1.1)
 
 require 'utils'
 require 'winapi'
@@ -166,27 +166,18 @@ function OnCreateObj(object)
 	end
 end
 function usePotion()
-	GetInventorySlot(2003)
 	UseItemOnTarget(2003,myHero)
 end
 function useBiscuit()
-	GetInventorySlot(2009)
-	UseItemOnTarget(2009,myHero)
+	UseItemOnTarget(2010,myHero)
 end
 function useFlask()
-	GetInventorySlot(2041)
 	UseItemOnTarget(2041,myHero)
 end
-function useBiscuit()
-	GetInventorySlot(2009)
-	UseItemOnTarget(2009,myHero)
-end
 function useElixir()
-	GetInventorySlot(2037)
 	UseItemOnTarget(2037,myHero)
 end
 function useManaPot()
-	GetInventorySlot(2004)
 	UseItemOnTarget(2004,myHero)
 end
 function GetTick()
