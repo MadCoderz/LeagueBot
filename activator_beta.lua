@@ -126,11 +126,9 @@ function DFG()
 end
 
 function ign()
-	if myHero.dead == 0 then
-		igntarget = GetWeakEnemy('TRUE',600)
-		if igntarget ~= nil then
-			IgniteTarget(igntarget, ignKey, ignopt.BurnGA, ignopt.BurnEgg, ignopt.BurnAatrox, ignopt.BurnZac)
-		end
+	igntarget = GetWeakEnemy('TRUE',600)
+	if igntarget ~= nil then
+		IgniteTarget(igntarget, ignKey, ignopt.BurnGA, ignopt.BurnEgg, ignopt.BurnAatrox, ignopt.BurnZac)
 	end
 end
 
