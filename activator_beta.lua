@@ -9,6 +9,7 @@
 require 'utils'
 require 'winapi'
 require 'SKeys'
+require 'IgniteTarget'
 local send = require 'SendInputScheduled'
 local uiconfig = require 'uiconfig'
 
