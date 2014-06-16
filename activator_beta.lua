@@ -42,6 +42,16 @@ local Summoners =
                     Barrier = {Key = nil, Name = 'SummonerBarrier'},
                     Clairvoyance = {Key = nil, Name = 'SummonerClairvoyance'}
                 }
+				
+if myHero ~= nil then
+    for _, Summoner in pairs(Summoners) do
+        if myHero.SummonerD == Summoner.Name then
+            Summoner.Key = "D"
+        elseif myHero.SummonerF == Summoner.Name then
+            Summoner.Key = "F"
+        end
+    end
+end
 
 Spellss, sspells = uiconfig.add_menu('Summoner Spells')
 if myHero.SummonerD == Summoners.Ignite.Name or myHero.SummonerF == Summoners.Ignite.Name then
@@ -122,7 +132,7 @@ end
 function ign()
 	igntarget = GetWeakEnemy('TRUE',600)
 	if igntarget ~= nil then
-		IgniteTarget(igntarget, Summoners.Ignite.Key, ignopt.BurnGA, ignopt.BurnEgg, ignopt.BurnAatrox, ignopt.BurnZac)
+		IgniteTarget(igntarget, Ignite.Key, ignopt.BurnGA, ignopt.BurnEgg, ignopt.BurnAatrox, ignopt.BurnZac)
 	end
 end
 
