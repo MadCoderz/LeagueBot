@@ -4,7 +4,7 @@
 -- Sida for utils.lua
 -- Akira for Activator idea and base (mostly rewritten)
 -- Lua for IgniteTarget.lua
--- Valdorian for RedElixir.lua (Potions)
+-- unknown developer for RedElixir.lua (Potions)
 
 require 'utils'
 require 'winapi'
