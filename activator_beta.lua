@@ -118,7 +118,7 @@ function Hydra()
 end
 
 function DFG()
-	dfg = GetInventorySlot(3074)
+	dfg = GetInventorySlot(3128)
 	if dfg ~= nil and myHero["SpellTime"..dfg] >= 1 then
 		dfgtarget = GetWeakEnemy('PHYS', 750)
 		if dfgtarget ~= nil then CastSpellTarget(tostring(dfg),dfgtarget) end
