@@ -44,8 +44,8 @@ local SummonerSpells =
 		Cleanse = {Key = nil, Name = "SummonerBoost"}
 	}
 
-Spells, sspells = uiconfig.add_menu('Summoner Spells')
-if (myHero.SummonerD or myHero.SummonerF) == SummonerSpells.Ignite.Name then
+Spellss, sspells = uiconfig.add_menu('Summoner Spells')
+if myHero.SummonerD == SummonerSpells.Ignite.Name or myHero.SummonerF == SummonerSpells.Ignite.Name then
 	sspells.checkbutton('ign', 'Auto Ignite', true)
 	IgniteOptions, ignopt = uiconfig.add_menu('Ignite Options')
 	ignopt.checkbutton('BurnGA', 'Ignite Guardian Angel', true)
@@ -86,34 +86,34 @@ pots.permashow('AutoPotions')
 
 function eventLoop()
 	if myHero.dead == 0 then
-		if ad.botRK then botRK() end
-		if ad.Tiamat then Tiamat() end
-		if ad.Hydra then Hydra() end
-		if ap.DFG then DFG() end
-		if sspells.ign then ign() end
-		if pots.AutoPotions then potions() end
+		if ADItems.botRK then botRK() end
+		if ADItems.Tiamat then Tiamat() end
+		if ADItems.Hydra then Hydra() end
+		if APItems.DFG then DFG() end
+		if Spellss.ign then ign() end
+		if Potions.AutoPotions then potions() end
 	end
 end
 
 function botRK()
-	brk = getInventorySlot(3153)
+	brk = GetInventorySlot(3153)
 		if brk ~= nil and myHero["SpellTime"..brk] >= 1 then
 			brktarget = GetWeakEnemy('PHYS', 450)
-			if ad.botRK and brktarget ~= nil and (myHero.maxHealth-myHero.health) <= (brktarget.maxHealth*15/100) then CastSpellTarget(tostring(brk),brktarget) end
+			if brktarget ~= nil and (myHero.maxHealth-myHero.health) <= (brktarget.maxHealth*15/100) then CastSpellTarget(tostring(brk),brktarget) end
 		end
 end
 
 function Tiamat()
 	tia = GetInventorySlot(3077)
-	if tia ~= nil and myHero["SpellTime"..tia] >= 1 then
-		if ad.Tiamat and GetWeakEnemy('PHYS', 400) ~= nil then CastSpellTarget(tostring(tia),myHero) end
+	if tia ~= nil and CanUseSpell(tia) then
+		if GetWeakEnemy('PHYS', 400) ~= nil then CastSpellTarget(tostring(tia),myHero) end
 	end
 end
 
 function Hydra()
 	hyd = GetInventorySlot(3074)
-	if hyd ~= nil and myHero["SpellTime"..tia] >= 1 then
-		if ad.Hydra and GetWeakEnemy('PHYS', 400) ~= nil then CastSpellTarget(tostring(hyd),myHero) end
+	if hyd ~= nil and myHero["SpellTime"..hyd] >= 1 then
+		if GetWeakEnemy('PHYS', 400) ~= nil then CastSpellTarget(tostring(hyd),myHero) end
 	end
 end
 
@@ -121,7 +121,7 @@ function DFG()
 	dfg = GetInventorySlot(3074)
 	if dfg ~= nil and myHero["SpellTime"..dfg] >= 1 then
 		dfgtarget = GetWeakEnemy('PHYS', 750)
-		if ap.DFG and dfgtarget ~= nil then CastSpellTarget(tostring(dfg),dfgtarget) end
+		if dfgtarget ~= nil then CastSpellTarget(tostring(dfg),dfgtarget) end
 	end
 end
 
