@@ -94,7 +94,7 @@ function eventLoop()
 		if ADItems.Tiamat then Tiamat() end
 		if ADItems.Hydra then Hydra() end
 		if APItems.DFG then DFG() end
-		if Spellss.ign then ign() end
+		if Spellss.ign ~= nil and Spellss.ign then ign() end
 		if Potions.AutoPotions then potions() end
 	end
 end
