@@ -54,7 +54,9 @@ if myHero ~= nil then
 end
 
 Spellss, sspells = uiconfig.add_menu('Summoner Spells')
+local ignite, exhaust, heal, clarity, barrier, clair, cleanse = false, false, false, false, false, false, false
 if myHero.SummonerD == Summoners.Ignite.Name or myHero.SummonerF == Summoners.Ignite.Name then
+	ignite = true
 	sspells.checkbutton('ign', 'Auto Ignite', true)
 	IgniteOptions, ignopt = uiconfig.add_menu('Ignite Options')
 	ignopt.checkbutton('BurnGA', 'Ignite Guardian Angel', true)
@@ -62,16 +64,22 @@ if myHero.SummonerD == Summoners.Ignite.Name or myHero.SummonerF == Summoners.Ig
 	ignopt.checkbutton('BurnAatrox', 'Ignite Aatrox even Rebirth passive', false)
 	ignopt.checkbutton('BurnZac', 'Ignite Zac even Rebirth passive', false)
 elseif myHero.SummonerD == Summoners.Exhaust.Name or myHero.SummonerF == Summoners.Exhaust.Name then
+	exhaust = true
 	sspells.checkbutton('exh', 'Auto Exhaust', true)
 elseif myHero.SummonerD == Summoners.Heal.Name or myHero.SummonerF == Summoners.Heal.Name then
+	heal = true
 	sspells.checkbutton('heal', 'Auto Heal', true)
 elseif myHero.SummonerD == Summoners.Clarity.Name or myHero.SummonerF == Summoners.Clarity.Name then
+	clarity = true
 	sspells.checkbutton('cla', 'Auto Clarity', true)
 elseif myHero.SummonerD == Summoners.Barrier.Name or myHero.SummonerF == Summoners.Barrier.Name then
+	barrier = true
 	sspells.checkbutton('brr', 'Auto Barrier', true)
 elseif myHero.SummonerD == Summoners.Clairvoyance.Name or myHero.SummonerF == Summoners.Clairvoyance.Name then
+	clair = true
 	sspells.checkbutton('clv', 'Auto Clairvoyance', true)
 elseif myHero.SummonerD == Summoners.Cleanse.Name or myHero.SummonerF == Summoners.Cleanse.Name then
+	cleanse = true
 	sspells.checkbutton('cls', 'Auto Cleanse', true)
 end
 Potions, pots = uiconfig.add_menu('Potions', 200)
@@ -94,7 +102,7 @@ function eventLoop()
 		if ADItems.Tiamat then Tiamat() end
 		if ADItems.Hydra then Hydra() end
 		if APItems.DFG then DFG() end
-		if Spellss.ign ~= nil and Spellss.ign then ign() end
+		if ignite and Spellss.ign then ign() end
 		if Potions.AutoPotions then potions() end
 	end
 end
@@ -159,6 +167,7 @@ function potions()
 		bluePill = nil 
 	end
 end
+
 function OnCreateObj(object)
 	if object ~= nil and object.charName == "FountainHeal.troy" and GetDistance(object) < 100 then
 		timer=os.clock()
