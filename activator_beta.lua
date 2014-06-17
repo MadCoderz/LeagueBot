@@ -44,11 +44,19 @@ local Summoners =
                 }
 				
 if myHero ~= nil then
+<<<<<<< HEAD
+    for k, v in pairs(Summoners) do
+        if myHero.SummonerD == v.Name then
+            v.Key = "D"
+        elseif myHero.SummonerF == v.Name then
+            v.Key = "F"
+=======
     for _, Summoner in pairs(Summoners) do
-        if myHero.SummonerD == Summoner.Name then
-            Summoner.Key = "D"
+        if myHero.SummonerD == Summoners.Summoner.Name then
+            Summoners.Summoner.Key = "D"
         elseif myHero.SummonerF == Summoner.Name then
-            Summoner.Key = "F"
+            Summoners.Summoner.Key = "F"
+>>>>>>> origin/master
         end
     end
 end
@@ -132,7 +140,7 @@ end
 function ign()
 	igntarget = GetWeakEnemy('TRUE',600)
 	if igntarget ~= nil then
-		IgniteTarget(igntarget, Ignite.Key, ignopt.BurnGA, ignopt.BurnEgg, ignopt.BurnAatrox, ignopt.BurnZac)
+		IgniteTarget(igntarget, Summoners.Ignite.Key, ignopt.BurnGA, ignopt.BurnEgg, ignopt.BurnAatrox, ignopt.BurnZac)
 	end
 end
 
