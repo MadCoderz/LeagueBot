@@ -44,22 +44,11 @@ local Summoners =
                 }
 				
 if myHero ~= nil then
-<<<<<<< HEAD
     for k, v in pairs(Summoners) do
         if myHero.SummonerD == v.Name then
             v.Key = "D"
         elseif myHero.SummonerF == v.Name then
             v.Key = "F"
-=======
-    for _, Summoner in pairs(Summoners) do
-        if myHero.SummonerD == Summoners.Summoner.Name then
-            Summoners.Summoner.Key = "D"
-        elseif myHero.SummonerF == Summoner.Name then
-            Summoners.Summoner.Key = "F"
-<<<<<<< HEAD
->>>>>>> origin/master
-=======
->>>>>>> origin/master
         end
     end
 end
