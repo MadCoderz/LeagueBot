@@ -56,6 +56,9 @@ if myHero ~= nil then
             Summoners.Summoner.Key = "D"
         elseif myHero.SummonerF == Summoner.Name then
             Summoners.Summoner.Key = "F"
+<<<<<<< HEAD
+>>>>>>> origin/master
+=======
 >>>>>>> origin/master
         end
     end
