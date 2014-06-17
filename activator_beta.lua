@@ -160,11 +160,9 @@ function potions()
 	end
 end
 function OnCreateObj(object)
-	if (GetDistance(myHero, object)) < 100 then
-		if string.find(object.charName,"FountainHeal") then
-			timer=os.clock()
-			bluePill = object
-		end
+	if object ~= nil and object.charName == "FountainHeal.troy" and GetDistance(object) < 100 then
+		timer=os.clock()
+		bluePill = object
 	end
 end
 function usePotion()
