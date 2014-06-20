@@ -40,7 +40,8 @@ local Summoners =
                     Heal = {Key = nil, Name = 'SummonerHeal'},
                     Clarity = {Key = nil, Name = 'SummonerMana'},
                     Barrier = {Key = nil, Name = 'SummonerBarrier'},
-                    Clairvoyance = {Key = nil, Name = 'SummonerClairvoyance'}
+                    Clairvoyance = {Key = nil, Name = 'SummonerClairvoyance'},
+					Cleanse = {Key = nil, Name = 'SummonerBoost'}
                 }
 				
 if myHero ~= nil then
@@ -54,32 +55,24 @@ if myHero ~= nil then
 end
 
 Spellss, sspells = uiconfig.add_menu('Summoner Spells')
-local ignite, exhaust, heal, clarity, barrier, clair, cleanse = false, false, false, false, false, false, false
-if myHero.SummonerD == Summoners.Ignite.Name or myHero.SummonerF == Summoners.Ignite.Name then
-	ignite = true
+if Summoners.Ignite.Key ~= nil then
 	sspells.checkbutton('ign', 'Auto Ignite', true)
 	IgniteOptions, ignopt = uiconfig.add_menu('Ignite Options')
 	ignopt.checkbutton('BurnGA', 'Ignite Guardian Angel', true)
 	ignopt.checkbutton('BurnEgg', 'Ignite Anivia even Eggnivia passive', false)
 	ignopt.checkbutton('BurnAatrox', 'Ignite Aatrox even Rebirth passive', false)
 	ignopt.checkbutton('BurnZac', 'Ignite Zac even Rebirth passive', false)
-elseif myHero.SummonerD == Summoners.Exhaust.Name or myHero.SummonerF == Summoners.Exhaust.Name then
-	exhaust = true
+elseif Summoners.Exhaust.Key ~= nil then
 	sspells.checkbutton('exh', 'Auto Exhaust', true)
-elseif myHero.SummonerD == Summoners.Heal.Name or myHero.SummonerF == Summoners.Heal.Name then
-	heal = true
+elseif Summoners.Heal.Key ~= nil then
 	sspells.checkbutton('heal', 'Auto Heal', true)
-elseif myHero.SummonerD == Summoners.Clarity.Name or myHero.SummonerF == Summoners.Clarity.Name then
-	clarity = true
+elseif Summoners.Clarity.Key ~= nil then
 	sspells.checkbutton('cla', 'Auto Clarity', true)
-elseif myHero.SummonerD == Summoners.Barrier.Name or myHero.SummonerF == Summoners.Barrier.Name then
-	barrier = true
+elseif Summoners.Barrier.Key ~= nil then
 	sspells.checkbutton('brr', 'Auto Barrier', true)
-elseif myHero.SummonerD == Summoners.Clairvoyance.Name or myHero.SummonerF == Summoners.Clairvoyance.Name then
-	clair = true
+elseif Summoners.Clairvoyance.Key ~= nil then
 	sspells.checkbutton('clv', 'Auto Clairvoyance', true)
-elseif myHero.SummonerD == Summoners.Cleanse.Name or myHero.SummonerF == Summoners.Cleanse.Name then
-	cleanse = true
+elseif Summoners.Cleanse.Key ~= nil then
 	sspells.checkbutton('cls', 'Auto Cleanse', true)
 end
 Potions, pots = uiconfig.add_menu('Potions', 200)
@@ -102,7 +95,7 @@ function eventLoop()
 		if ADItems.Tiamat then Tiamat() end
 		if ADItems.Hydra then Hydra() end
 		if APItems.DFG then DFG() end
-		if ignite and Spellss.ign then ign() end
+		if Summoners.Ignite.Key ~= nil and Spellss.ign then ign() end
 		if Potions.AutoPotions then potions() end
 	end
 end
