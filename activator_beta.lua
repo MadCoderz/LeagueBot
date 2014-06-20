@@ -34,16 +34,16 @@ APItems, ap = uiconfig.add_menu('AP Aggressive Items')
 ap.checkbutton('DFG', 'Deathfire Grasp', true)
 
 local Summoners =
-                {
-                    Ignite = {Key = nil, Name = 'SummonerDot'},
-                    Exhaust = {Key = nil, Name = 'SummonerExhaust'},
-                    Heal = {Key = nil, Name = 'SummonerHeal'},
-                    Clarity = {Key = nil, Name = 'SummonerMana'},
-                    Barrier = {Key = nil, Name = 'SummonerBarrier'},
-                    Clairvoyance = {Key = nil, Name = 'SummonerClairvoyance'},
+				{
+					Ignite = {Key = nil, Name = 'SummonerDot'},
+					Exhaust = {Key = nil, Name = 'SummonerExhaust'},
+					Heal = {Key = nil, Name = 'SummonerHeal'},
+					Clarity = {Key = nil, Name = 'SummonerMana'},
+					Barrier = {Key = nil, Name = 'SummonerBarrier'},
+					Clairvoyance = {Key = nil, Name = 'SummonerClairvoyance'},
 					Cleanse = {Key = nil, Name = 'SummonerBoost'}
-                }
-				
+				}
+
 if myHero ~= nil then
     for k, v in pairs(Summoners) do
         if myHero.SummonerD == v.Name then
