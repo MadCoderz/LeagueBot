@@ -1,11 +1,8 @@
+local yayo = require 'yayo'
 local VayneAARange = myHero.range + GetDistance(GetMinBBox(myHero))
 local VayneQRange = 300
 local VayneERange = 550
 local VayneRRange = myHero.range + GetDistance(GetMinBBox(myHero))
-
-require 'utils'
-local yayo = require 'yayo'
-DrawCircleObject(myHero, myHero.range + GetDistance(GetMinBBox(myHero)), Color.Yellow)
 
 function Init()
 	yayo.RegisterBeforeAttackCallback(BeforeAttack)
