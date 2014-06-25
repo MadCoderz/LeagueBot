@@ -1,8 +1,6 @@
 local yayo = require 'yayo'
-local VayneAARange = myHero.range + GetDistance(GetMinBBox(myHero))
 local VayneQRange = 300
 local VayneERange = 550
-local VayneRRange = myHero.range + GetDistance(GetMinBBox(myHero))
 
 function Init()
 	yayo.RegisterBeforeAttackCallback(BeforeAttack)
@@ -12,7 +10,7 @@ end
 
 function Gapclose(target)
 	local targetdist = GetDistance(myHero, target)
-	if CanCastSpell('Q') and targetdist > VayneAARange and targetdist <= (VayneAARange + VayneQRange) then
+	if CanCastSpell('Q') and not yayo.InRange(target) and targetdist <= (yayo.MyRange(target) + VayneQRange) then
 		CastSpellXYZ('Q', target.x, 0, target.z)
 	end
 end
@@ -34,14 +32,14 @@ function Killsteal(target)
 end
 
 function AfterAttack()
-	if ValidTarget(target) and yayo.Config.AutoCarry then
+	if ValidTarget(target) and yayo.InRange(target) and yayo.Config.AutoCarry then
 		CastSpellXYZ('Q', mousePos.x, 0, mousePos.z)
 	end
 end
 
 function OnTick()
-	DrawCircleObject(myHero, myHero.range + GetDistance(GetMinBBox(myHero)), Color.Yellow)
 	target = yayo.GetTarget()
+	DrawCircleObject(myHero, yayo.MyRange(target), Color.Yellow)
 	if ValidTarget(target) then
 		Killsteal(target)
 		Condemn(target)
