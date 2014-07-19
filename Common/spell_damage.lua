@@ -75,10 +75,10 @@
 ]]--
 
 function getDmg(spellname,target,owner,stagedmg,spelllvl)
-	local name = owner.charName
-	local lvl = owner.level
+	local name = owner.name
+	local lvl = owner.selflevel
 	local ap = owner.ap
-	local ad = owner.totalDamage
+	local ad = owner.baseDamage + owner.addDamage
 	local bad = owner.addDamage
 	local ar = owner.armor
 	local mmana = owner.maxMana
@@ -87,13 +87,15 @@ function getDmg(spellname,target,owner,stagedmg,spelllvl)
 	local tap = target.ap
 	local thp = target.health
 	local tmhp = target.maxHealth
-	local Qlvl = spelllvl and spelllvl or myHero.SpellLevelQ
-	local Wlvl = spelllvl and spelllvl or myHero.SpellLevelW
-	local Elvl = spelllvl and spelllvl or myHero.SpellLevelE
-	local Rlvl = spelllvl and spelllvl or myHero.SpellLevelR
+	local Qlvl = spelllvl and spelllvl or owner.SpellLevelQ
+	local Wlvl = spelllvl and spelllvl or owner.SpellLevelW
+	local Elvl = spelllvl and spelllvl or owner.SpellLevelE
+	local Rlvl = spelllvl and spelllvl or owner.SpellLevelR
 	local stagedmg1,stagedmg2,stagedmg3 = 1,0,0
-	if stagedmg == 2 then stagedmg1,stagedmg2,stagedmg3 = 0,1,0
-	elseif stagedmg == 3 then stagedmg1,stagedmg2,stagedmg3 = 0,0,1 end
+	if stagedmg ~= nil then
+		if stagedmg == 2 then stagedmg1,stagedmg2,stagedmg3 = 0,1,0
+		elseif stagedmg == 3 then stagedmg1,stagedmg2,stagedmg3 = 0,0,1 end
+	end
 	local TrueDmg = 0
 	local TypeDmg = 1 --1 ability/normal--2 bonus to attack
 	if ((spellname == "Q" or spellname == "QM") and Qlvl == 0) or ((spellname == "W" or spellname == "WM") and Wlvl == 0) or ((spellname == "E" or spellname == "EM") and Elvl == 0) or (spellname == "R" and Rlvl == 0) then
@@ -769,57 +771,57 @@ function getDmg(spellname,target,owner,stagedmg,spelllvl)
 			elseif spellname == "R" then DmgM = 85*Rlvl+95+.7*ap
 			end
 		end
-		if DmgM > 0 then DmgM = owner:CalcMagicDamage(target,DmgM) end
-		if DmgP > 0 then DmgP = owner:CalcDamage(target,DmgP) end
+		if DmgM > 0 then DmgM = CalcMagicDamage(target,DmgM) end
+		if DmgP > 0 then DmgP = CalcDamage(target,DmgP) end
 		TrueDmg = DmgM+DmgP+DmgT
 	elseif (spellname == "AD") then
-		TrueDmg = owner:CalcDamage(target,ad)
+		TrueDmg = CalcDamage(target,ad)
 	elseif (spellname == "IGNITE") then
 		TrueDmg = 50+20*lvl
 	elseif (spellname == "DFG") then
-		TrueDmg = owner:CalcMagicDamage(target,.15*tmhp)
+		TrueDmg = CalcMagicDamage(target,.15*tmhp)
 	elseif (spellname == "HXG") then
-		TrueDmg = owner:CalcMagicDamage(target,150+.4*ap)
+		TrueDmg = CalcMagicDamage(target,150+.4*ap)
 	elseif (spellname == "BWC") then
-		TrueDmg = owner:CalcMagicDamage(target,100)
+		TrueDmg = CalcMagicDamage(target,100)
 	elseif (spellname == "KITAES") then
-		TrueDmg = owner:CalcMagicDamage(target,.025*tmhp)
+		TrueDmg = CalcMagicDamage(target,.025*tmhp)
 	elseif (spellname == "NTOOTH") then
-		TrueDmg = owner:CalcMagicDamage(target,15+.15*ap)
+		TrueDmg = CalcMagicDamage(target,15+.15*ap)
 	elseif (spellname == "WITSEND") then
-		TrueDmg = owner:CalcMagicDamage(target,42)
+		TrueDmg = CalcMagicDamage(target,42)
 	elseif (spellname == "SHEEN") then
-		TrueDmg = owner:CalcDamage(target,ad-bad) --(bonus)
+		TrueDmg = CalcDamage(target,ad-bad) --(bonus)
 	elseif (spellname == "TRINITY") then
-		TrueDmg = owner:CalcDamage(target,2*(ad-bad)) --(bonus)
+		TrueDmg = CalcDamage(target,2*(ad-bad)) --(bonus)
 	elseif (spellname == "LICHBANE") then
-		TrueDmg = owner:CalcMagicDamage(target,.75*(ad-bad)+.5*ap) --(bonus)
+		TrueDmg = CalcMagicDamage(target,.75*(ad-bad)+.5*ap) --(bonus)
 	elseif (spellname == "LIANDRYS") then
-		TrueDmg = owner:CalcMagicDamage(target,.06*thp) --over 3 sec, If their movement is impaired, they take double damage from this effect
+		TrueDmg = CalcMagicDamage(target,.06*thp) --over 3 sec, If their movement is impaired, they take double damage from this effect
 	elseif (spellname == "BLACKFIRE") then
-		TrueDmg = owner:CalcMagicDamage(target,.035*tmhp) --over 2 sec
+		TrueDmg = CalcMagicDamage(target,.035*tmhp) --over 2 sec
 	elseif (spellname == "STATIKK") then
-		TrueDmg = owner:CalcMagicDamage(target,100)
+		TrueDmg = CalcMagicDamage(target,100)
 	elseif (spellname == "ICEBORN") then
-		TrueDmg = owner:CalcDamage(target,1.25*(ad-bad)) --(bonus)
+		TrueDmg = CalcDamage(target,1.25*(ad-bad)) --(bonus)
 	elseif (spellname == "TIAMAT") then
-		TrueDmg = owner:CalcDamage(target,.6*ad) --decaying down to 33.33% near the edge (20% of ad)
+		TrueDmg = CalcDamage(target,.6*ad) --decaying down to 33.33% near the edge (20% of ad)
 	elseif (spellname == "HYDRA") then
-		TrueDmg = owner:CalcDamage(target,.6*ad) --decaying down to 33.33% near the edge (20% of ad)
+		TrueDmg = CalcDamage(target,.6*ad) --decaying down to 33.33% near the edge (20% of ad)
 	elseif (spellname == "RUINEDKING") then
-		TrueDmg = math.max(owner:CalcDamage(target,.08*thp)*(stagedmg1+stagedmg3),owner:CalcDamage(target,math.max(.1*tmhp,100))*stagedmg2) --stage1-3:Passive. stage2:Active.
+		TrueDmg = math.max(CalcDamage(target,.08*thp)*(stagedmg1+stagedmg3),CalcDamage(target,math.max(.1*tmhp,100))*stagedmg2) --stage1-3:Passive. stage2:Active.
 	elseif (spellname == "MURAMANA") then
-		TrueDmg = owner:CalcDamage(target,.06*mana)
+		TrueDmg = CalcDamage(target,.06*mana)
 	elseif (spellname == "HURRICANE") then
-		TrueDmg = owner:CalcDamage(target,10+.5*ad) --apply on-hit effects
+		TrueDmg = CalcDamage(target,10+.5*ad) --apply on-hit effects
 	elseif (spellname == "SPIRITLIZARD") then
 		TrueDmg = 14+2*lvl --over 3 sec
 	elseif (spellname == "SUNFIRE") then
-		TrueDmg = owner:CalcMagicDamage(target,25+lvl) --x sec
+		TrueDmg = CalcMagicDamage(target,25+lvl) --x sec
 	elseif (spellname == "LIGHTBRINGER") then
-		TrueDmg = owner:CalcMagicDamage(target,100) -- 20% chance
+		TrueDmg = CalcMagicDamage(target,100) -- 20% chance
 	elseif (spellname == "MOUNTAIN") then
-		TrueDmg = owner:CalcMagicDamage(target,.3*ap+ad)
+		TrueDmg = CalcMagicDamage(target,.3*ap+ad)
 	elseif (spellname == "ISPARK" or spellname == "MADREDS" or spellname == "ECALLING" or spellname == "EXECUTIONERS" or spellname == "MALADY") then
 		TrueDmg = 0
 	else
