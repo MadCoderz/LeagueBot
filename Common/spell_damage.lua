@@ -92,10 +92,8 @@ function getDmg(spellname,target,owner,stagedmg,spelllvl)
 	local Elvl = spelllvl and spelllvl or owner.SpellLevelE
 	local Rlvl = spelllvl and spelllvl or owner.SpellLevelR
 	local stagedmg1,stagedmg2,stagedmg3 = 1,0,0
-	if stagedmg ~= nil then
-		if stagedmg == 2 then stagedmg1,stagedmg2,stagedmg3 = 0,1,0
-		elseif stagedmg == 3 then stagedmg1,stagedmg2,stagedmg3 = 0,0,1 end
-	end
+	if stagedmg == 2 then stagedmg1,stagedmg2,stagedmg3 = 0,1,0
+	elseif stagedmg == 3 then stagedmg1,stagedmg2,stagedmg3 = 0,0,1 end
 	local TrueDmg = 0
 	local TypeDmg = 1 --1 ability/normal--2 bonus to attack
 	if ((spellname == "Q" or spellname == "QM") and Qlvl == 0) or ((spellname == "W" or spellname == "WM") and Wlvl == 0) or ((spellname == "E" or spellname == "EM") and Elvl == 0) or (spellname == "R" and Rlvl == 0) then
