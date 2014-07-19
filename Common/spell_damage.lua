@@ -87,10 +87,10 @@ function getDmg(spellname,target,owner,stagedmg,spelllvl)
 	local tap = target.ap
 	local thp = target.health
 	local tmhp = target.maxHealth
-	local Qlvl = spelllvl and spelllvl or owner:GetSpellData(_Q).level
-	local Wlvl = spelllvl and spelllvl or owner:GetSpellData(_W).level
-	local Elvl = spelllvl and spelllvl or owner:GetSpellData(_E).level
-	local Rlvl = spelllvl and spelllvl or owner:GetSpellData(_R).level
+	local Qlvl = spelllvl and spelllvl or myHero.SpellLevelQ
+	local Wlvl = spelllvl and spelllvl or myHero.SpellLevelW
+	local Elvl = spelllvl and spelllvl or myHero.SpellLevelE
+	local Rlvl = spelllvl and spelllvl or myHero.SpellLevelR
 	local stagedmg1,stagedmg2,stagedmg3 = 1,0,0
 	if stagedmg == 2 then stagedmg1,stagedmg2,stagedmg3 = 0,1,0
 	elseif stagedmg == 3 then stagedmg1,stagedmg2,stagedmg3 = 0,0,1 end
