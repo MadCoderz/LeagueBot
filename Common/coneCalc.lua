@@ -19,9 +19,9 @@ function GetCone(radius,theta)
         theta1,theta2,smallBisect = 0,0,0
         coneTargetsTable = {}
        
-        for i = 1, heroManager.iCount, 1 do
-        hero = heroManager:getHero(i)
-        if ValidTarget(hero) and GetDistance(hero) <= radius then-- and inRadius(hero,radius*radius) then
+        for i = 1, objManager:GetMaxHeroes(), 1 do
+        hero = objManager:GetHero(i)
+        if ValidTarget(hero) and hero.team == TEAM_ENEMY and GetDistance(hero) <= radius then -- and inRadius(hero,radius*radius) then
                         coneTargetsTable[n] = hero
                         n=n+1
                 end
@@ -33,8 +33,8 @@ function GetCone(radius,theta)
                         for j=1,#coneTargetsTable, 1 do
                                 if i~=j then
                                         --Position vector from player to 2 different targets.
-                                        v1 = Vector(coneTargetsTable[i].x-player.x , coneTargetsTable[i].z-player.z)
-                                        v2 = Vector(coneTargetsTable[j].x-player.x , coneTargetsTable[j].z-player.z)
+                                        v1 = Vector(coneTargetsTable[i].x-myHero.x , coneTargetsTable[i].z-myHero.z)
+                                        v2 = Vector(coneTargetsTable[j].x-myHero.x , coneTargetsTable[j].z-myHero.z)
                                         thetav1 = sign(v1.y)*90-math.deg(math.atan(v1.x/v1.y))
                                         thetav2 = sign(v2.y)*90-math.deg(math.atan(v2.x/v2.y))
                                         thetaBetween = thetav2-thetav1                 
@@ -49,7 +49,7 @@ function GetCone(radius,theta)
                                                         for k=1, #coneTargetsTable,1 do
                                                                 if k~=i and k~=j then
                                                                         --Build position vector of third target
-                                                                        v3 = Vector(coneTargetsTable[k].x-player.x , coneTargetsTable[k].z-player.z)
+                                                                        v3 = Vector(coneTargetsTable[k].x-myHero.x , coneTargetsTable[k].z-myHero.z)
                                                                         --For v3 to be between v1 and v2
                                                                         --it must be clockwise to v1
                                                                         --and counter-clockwise to v2
@@ -92,9 +92,9 @@ function GetCone(radius,theta)
  
                 smallBisect = math.rad((theta1 + theta2) / 2)
                 vResult = {}
-                vResult.x = radius*math.cos(smallBisect)+player.x
-                vResult.y = player.y
-                vResult.z = radius*math.sin(smallBisect)+player.z
+                vResult.x = radius*math.cos(smallBisect)+myHero.x
+                vResult.y = myHero.y
+                vResult.z = radius*math.sin(smallBisect)+myHero.z
                
                 return vResult
         end
