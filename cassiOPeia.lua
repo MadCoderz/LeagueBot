@@ -64,7 +64,7 @@ function Combo(target)
 			if not IsPoisoned(target) then
 				W(target)
 			end
-			if not IsPoisoned(target then
+			if not IsPoisoned(target) then
 				Q(target)
 			end
 		end
