@@ -77,6 +77,7 @@ function OnTick()
 	if target == nil and target2 ~= nil then
 		target = target2
 	end
+	yayo.ForceTarget(target)
 	Combo(target)
 	if CassiopeiaConfig.Ult2Win ~= 0 and CountEnemyHeroInRange(Cassiopeia.Skills.R.radius) >= CassiopeiaConfig.Ult2Win then
 		AutoR()
