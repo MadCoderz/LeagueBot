@@ -14,7 +14,7 @@ CassiopeiaConfig, cfg = uiconfig.add_menu("Mad's Cassiopeia Config")
 cfg.keydown('ForceUlt', 'Force Smart Ult', string.byte("A"))
 cfg.slider('Ult2Win','Enemies to Smart Ult',0,5,3)
 local AARange = getAARange()
-local Cassiopeia = {Skills = {Q = {range = 850, delay = 0.6, radius = 75}, W = {range = 850, radius = 125}, E = {range = 700}, R = {radius = 825, theta = 80}}}
+local Cassiopeia = {Skills = {Q = {range = 850, delay = 6, radius = 75}, W = {range = 850, radius = 125}, E = {range = 700}, R = {radius = 825, theta = 80}}}
 TargetSelector(DAMAGE_MAGIC, LESS_CAST, true)
 
 function CastSpellVector(spell, vector)
