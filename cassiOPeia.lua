@@ -3,6 +3,7 @@
 local uiconfig = require 'uiconfig'
 require "hunter_libs"
 require "coneCalc"
+require "spell_damage"
 local yayo = require "yayo"
 -- YAYO STUFF --
 yayo.RegisterBeforeAttackCallback(BeforeAttack)
@@ -44,7 +45,7 @@ function W(target)
 end
 
 function E(target)
-	if VTarget(target, Cassiopeia.Skills.E.range, true) and IsPoisoned(target) then
+	if VTarget(target, Cassiopeia.Skills.E.range, true) and IsPoisoned(target) or VTarget(target, Cassiopeia.Skills.E.range, true) and getDmg("E",target,myHero) >= target.health then
 		CastSpellTarget("E", target)
 	end
 end
@@ -59,10 +60,11 @@ end
 function Combo(target)
 	if target ~= nil then
 		if yayo.Config.AutoCarry then
-			if IsPoisoned(target) then
-				E(target)
-			else
+			E(target)
+			if not IsPoisoned(target) then
 				W(target)
+			end
+			if not IsPoisoned(target then
 				Q(target)
 			end
 		end
