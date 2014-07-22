@@ -70,7 +70,11 @@ function Combo(target)
 end
 
 function OnTick()
-	local target = getTSTarget(850)
+	local target = getTSTarget(Cassiopeia.Skills.E.range)
+	local target2 = getTSTarget(Cassiopeia.Skills.Q.range)
+	if target == nil and target2 ~= nil then
+		target = target2
+	end
 	Combo(target)
 	if CassiopeiaConfig.Ult2Win ~= 0 and CountEnemyHeroInRange(Cassiopeia.Skills.R.radius) >= CassiopeiaConfig.Ult2Win then
 		AutoR()
