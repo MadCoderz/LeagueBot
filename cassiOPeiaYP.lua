@@ -34,7 +34,7 @@ end
 
 function Q(target)
 	if VTarget(target, Cassiopeia.Skills.Q.range, true) then
-		local mainCastPosition, mainHitChance, points, mainPosition = YPrediction:GetCircularAOECastPosition(target, Cassiopeia.Skills.Q.delay, Cassiopeia.Skills.Q.radius, Cassiopeia.Skills.Q.range, Cassiopeia.Skills.Q.speed, myHero, false)
+		local mainCastPosition, mainHitChance, points, mainPosition = YP:GetCircularAOECastPosition(target, Cassiopeia.Skills.Q.delay, Cassiopeia.Skills.Q.radius, Cassiopeia.Skills.Q.range, Cassiopeia.Skills.Q.speed, myHero, false)
 		if mainPosition and HitChance >= 2 then
 			CastSpellVector("Q", mainCastPosition)
 		end
@@ -43,7 +43,7 @@ end
 
 function W(target)
 	if VTarget(target, Cassiopeia.Skills.W.range, true) then
-		local mainCastPosition, mainHitChance, points, mainPosition = YPrediction:GetCircularAOECastPosition(target, 0, Cassiopeia.Skills.W.radius, Cassiopeia.Skills.W.range, Cassiopeia.Skills.W.speed, myHero, false)
+		local mainCastPosition, mainHitChance, points, mainPosition = YP:GetCircularAOECastPosition(target, 0, Cassiopeia.Skills.W.radius, Cassiopeia.Skills.W.range, Cassiopeia.Skills.W.speed, myHero, false)
 		if mainPosition and HitChance >= 2 then
 			CastSpellVector("W", mainCastPosition)
 		end
